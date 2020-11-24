@@ -20,13 +20,12 @@ def _init_(hauteur, largeur):
     return listOfList 
 
 def modifyTableau(list):
-    a = int(input("Entrez l'axe des ordonnées"))
-    b =int(input("Entre l'axe des abscisses"))
-
+    a = int(input("Entrez l'axe des ordonnées"))-1
+    b = int(input("Entre l'axe des abscisses"))-1
     list[a][b]="0"
 
 def affiche(tableau):
-    for i  in tableau:
+    for i in tableau:
         print(i)
 
 def demineur():
