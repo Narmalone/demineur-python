@@ -1,89 +1,72 @@
+#tri sélection
+list=[2,8,6,3,]
+def selectMin(list):
+    var=list[0]
+    for i in list:
+        if var>i:
+            var=i
+    return var
+print("Oh non, la liste est dans le désordre !")
+print(list)
 
+def triSelect (list):
+    result=[]
+    while len(list)>0:
+        var=selectMin(list)
+        list.remove(var)
+        result.append(var)
+    return result
+print("Bien joué, la liste est triée:")
+print(triSelect(list))
 
+#Tri fusion
+def fusion(t,d,p,f):
+    i=d
+    j=p
+    res=[]
+    while i<p and j<f:
+        if t[i]<t[j]:
+            res.append(t[i])
+            i=i+1
+        else:
+            res.append(t[j])
+            j=j+1
+    while i<p:
+        res.append(t[i])
+        i=i+1
+    while j<f:
+        res.append(t[j])
+        j=j+1
+    return res
+ 
+def tri_fusion(t,i,j):
+    if i<j:
+        m = (i+j)//2
+        tri_fusion(t,1,m)
+        tri_fusion(t,m+1,j)
+        t=fusion(t,i,m,j)
+ 
+tab=[4,3,5,2,1]
 
-
-
-#Démineur
-
-#variables
-
-import random 
-
-#Terrain
-
-hauteur = 5
-largeur =5
-
-#Mines
-
-mineMax=5
-
-#Fonction mines
-
-def mines(max):
-    nbMines= random.randint(2, mineMax)
-    return nbMines
-print("il y'a ", mines(mineMax), " mines ")
-
-def _mines_(hauteur, largeur):
-
-    listOfList=[] 
-       
-    for i in range(hauteur):
-        listRow = []
-
-        for j in range(largeur):
-            listRow.append(mines)
-            print(mines)
-        listOfList.append(listRow)
-        
-    
-    return listOfList 
-
-def minesPosition(list):
-    affiche(_init_)
-
-    if modifyTableau==_mines_:
-        print("vous avez perdu")
-
-
-#Fonction terrain
-
-def _init_(hauteur, largeur):
-
-    listOfList=[] 
-       
-    for i in range(hauteur):
-        listRow = []
-
-        for j in range(largeur):
-            listRow.append("X")
-        listOfList.append(listRow)
-        
-    
-    return listOfList 
-
-#postion joueur
-
-def modifyTableau(list):
-    a = int(input("Choisissez votre ligne : "))-1
-    b = int(input("Choisissez votre colonne : "))-1
-    list[a][b]="0"
-
-#Affichage du tableau
-
-def affiche(tableau):
-    for i in tableau:
-        print(i)
-
-#Si pas perdu continuer
-
-def demineur():
-    liste = _init_(hauteur, largeur)
-    pasPerdu=True
-    while (pasPerdu):
-        modifyTableau(liste)
-        affiche(liste)
-
-demineur()
-
+tri_fusion(tab,0,len(tab))
+print(tri_fusion(tab,0,len(tab)))
+#Utiliser le fait que la liste est muable
+tab_1 = [20, 2, 3]
+def modif_1(tableau):
+    for i in range(list):
+        tab_1.append(i)  #Ici j'utilise le nom tab_1
+ 
+#Appel de la fonction()
+print(tab_1)
+ 
+ 
+#Mettre le tableau en argument
+tab_2 = [1, 2, 3]
+def modif_2(tableau):
+    for i in range(4, 9):
+        tableau.append(i)
+    return tableau
+ 
+#A l'appel
+tab_2 = modif_2(tab_2)  #tab_2 en argument
+print(tab_2)
