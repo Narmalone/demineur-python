@@ -1,89 +1,121 @@
+# --------------------------------------
+"""   Démineur """
+# --------------------------------------
 
+# Variables
+# Modifiez ces variables pour changer les settings du jeu
 
+import random
 
-
-
-#Démineur
-
-#variables
-
-import random 
-
-#Terrain
 
 hauteur = 5
-largeur =5
+largeur = 5
+minesMax = 5
 
-#Mines
-
-mineMax=5
-
-#Fonction mines
+# --------------------------------------
+"""   Nombre de mines """
+# --------------------------------------
 
 def mines(max):
-    nbMines= random.randint(2, mineMax)
-    return nbMines
-print("il y'a ", mines(mineMax), " mines ")
+    nMine = random.randint(2,minesMax)
+    return nMine
+print("Il y a |",mines(minesMax),"| mines.")
 
+# --------------------------------------
+"""   Position des mines """
+# --------------------------------------
 def _mines_(hauteur, largeur):
 
-    listOfList=[] 
-       
+    listOflist=[]
+
     for i in range(hauteur):
-        listRow = []
+        listRow=[]
 
         for j in range(largeur):
-            listRow.append(mines)
-            print(mines)
-        listOfList.append(listRow)
+            listRow.append(0)
+        listOflist.append(listRow)
         
-    
-    return listOfList 
+    return listOflist
 
-def minesPosition(list):
-    affiche(_init_)
+# Position aléatoire des mines
 
-    if modifyTableau==_mines_:
-        print("vous avez perdu")
+def minesPos(list):
+    c = random.randint(2,hauteur)-1
+    d = random.randint(2,largeur)-1
 
+    list[c][d]="0"
 
-#Fonction terrain
+# --------------------------------------
+"""   Tableau visible """
+# --------------------------------------
 
+# Paramètre de la grille
 def _init_(hauteur, largeur):
 
-    listOfList=[] 
-       
+    listOflist=[]
+
     for i in range(hauteur):
-        listRow = []
+        listRow=[]
 
         for j in range(largeur):
             listRow.append("X")
-        listOfList.append(listRow)
+        listOflist.append(listRow)
         
-    
-    return listOfList 
+    return listOflist
 
-#postion joueur
+# Position du joueur
+def modifyTableau(list,mines):
+    pasPerdu=True
+    a = int(input("Choix de la ligne entre 0 et 4 : "))
+    b = int(input("Choix de la colonne entre 0 et 4 : "))
+    if (mines[a][b]==1):
 
-def modifyTableau(list):
-    a = int(input("Choisissez votre ligne : "))-1
-    b = int(input("Choisissez votre colonne : "))-1
-    list[a][b]="0"
+        print("Vous avez perdu, dommage.")
+        pasPerdu=False
+    compteur=0
+    if (a>0 and b>0 and mines[a-1][b-1]==1):
+        compteur+=1
+    if (a<largeur-1 and b<hauteur-1 and mines[a+1][b+1]==1):
+        compteur+=1
+    if (a>largeur-1 and b<hauteur-1 and mines[a-1][b+1]==1):
+        compteur+=1
+    if (a<largeur-1 and b>hauteur-1 and mines[a+1][b-1]==1):
+        compteur+=1
+    if (a>largeur-1 and mines[a+1][b]==1):
+        compteur+=1
+    if (a<largeur-1 and mines[a-1][b]==1):
+        compteur+=1
+    if (b<hauteur-1 and mines[a][b-1]==1):
+        compteur+=1
+    if (b>hauteur-1 and mines[a][b+1]==1):
+        compteur+=1
 
-#Affichage du tableau
+    list[a][b]=compteur
 
+    return pasPerdu
+
+# Affichage 
 def affiche(tableau):
     for i in tableau:
         print(i)
 
-#Si pas perdu continuer
+def placerMines(mines):
+    for i in range(minesMax): 
+     x = random.randrange(1,5) 
+     y = random.randrange(1,5) 
+     mines[x][y] = 1
+    print()
 
+# Durée de jeu 
 def demineur():
-    liste = _init_(hauteur, largeur)
+    liste = _init_(hauteur,largeur)
+    mines = _mines_(hauteur,largeur)
+    placerMines(mines)
     pasPerdu=True
     while (pasPerdu):
-        modifyTableau(liste)
+        pasPerdu=modifyTableau(liste,mines)
         affiche(liste)
 
 demineur()
+
 
