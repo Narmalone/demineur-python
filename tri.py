@@ -50,23 +50,21 @@ tab=[4,3,5,2,1]
 
 tri_fusion(tab,0,len(tab))
 print(tri_fusion(tab,0,len(tab)))
-#Utiliser le fait que la liste est muable
+
 tab_1 = [20, 2, 3]
 def modif_1(tableau):
     for i in range(list):
-        tab_1.append(i)  #Ici j'utilise le nom tab_1
+        tab_1.append(i) 
  
 #Appel de la fonction()
 print(tab_1)
  
  
-#Mettre le tableau en argument
 tab_2 = [1, 2, 3]
 def modif_2(tableau):
     for i in range(4, 9):
         tableau.append(i)
     return tableau
  
-#A l'appel
-tab_2 = modif_2(tab_2)  #tab_2 en argument
+tab_2 = modif_2(tab_2)
 print(tab_2)
